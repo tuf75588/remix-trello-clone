@@ -5,8 +5,9 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import React from "react";
 
-export default function App() {
+export default function App({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
       <head>
@@ -16,6 +17,7 @@ export default function App() {
         <Links />
       </head>
       <body>
+        {children}
         <Outlet />
         <ScrollRestoration />
         <Scripts />
