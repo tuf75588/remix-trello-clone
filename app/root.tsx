@@ -4,10 +4,11 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
-import React from "react";
+} from '@remix-run/react';
+import React from 'react';
+import './styles.css';
 
-export default function App({children}: {children: React.ReactNode}) {
+export default function App({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -16,8 +17,13 @@ export default function App({children}: {children: React.ReactNode}) {
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className="h-screen bg-slate-100 text-slate-900">
+        <div className="h-full flex flex-col min-h-0">
+          <div className="bg-slate-900 border-b border-slate-800 flex items-center justify-between py-4 px-8 box-border">
+            <div className="font-black text-2xl text-white">Trellix</div>
+            <div className="text-slate-500">a Remix Demo</div>
+          </div>
+        </div>
         <Outlet />
         <ScrollRestoration />
         <Scripts />

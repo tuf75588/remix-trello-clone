@@ -2,21 +2,13 @@ import type { MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "A Trello clone in Remix" },
   ];
 };
 
 export default function Index() {
   return (
-    <div
-      style={{
-        fontFamily: "system-ui, sans-serif",
-        lineHeight: "1.8",
-        margin: "0 auto",
-        textAlign: "center",
-      }}
-    >
+    <div>
       index page
     </div>
   );
