@@ -1,15 +1,30 @@
 import {
   Link,
   Links,
+  LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  redirect,
+  useLoaderData,
 } from '@remix-run/react';
 import React from 'react';
-import './styles.css';
 
-export default function App({ children }: { children: React.ReactNode }) {
+import { getAuthFromRequest } from './auth/auth';
+import './styles.css';
+import { LoaderFunction, LoaderFunctionArgs } from '@remix-run/node';
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  let auth = await getAuthFromRequest(request);
+  if (auth && new URL(request.url).pathname === '/') {
+    throw redirect('/');
+  }
+  return auth;
+}
+
+export default function App() {
+  let userId = useLoaderData<typeof loader>();
   return (
     <html lang="en">
       <head>
@@ -42,10 +57,31 @@ export default function App({ children }: { children: React.ReactNode }) {
                 label="Docs"
               />
             </div>
+            <div className="w-1/3 flex justify-end">
+              {userId ? (
+                <form action="/logout" method="post">
+                  <button className="block text-center">
+                    {/* logout icon */}
+                    <br />
+                    <span className="text-slate-500 text-xs uppercase font-bold">
+                      Log out
+                    </span>
+                  </button>
+                </form>
+              ) : (
+                <Link to="/login" className="block text-center">
+                  {/* login icon */}
+                  <br />
+                </Link>
+              )}
+            </div>
+          </div>
+          <div className="flex-grow-min-h-0 h-full">
+            <Outlet />
           </div>
         </div>
-        <Outlet />
         <ScrollRestoration />
+        <LiveReload />
         <Scripts />
       </body>
     </html>
