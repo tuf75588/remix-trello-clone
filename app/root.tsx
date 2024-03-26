@@ -13,7 +13,7 @@ import React from 'react';
 
 import { getAuthFromRequest } from './auth/auth';
 import './styles.css';
-import { LoaderFunction, LoaderFunctionArgs } from '@remix-run/node';
+import type { LoaderFunction, LoaderFunctionArgs } from '@remix-run/node';
 
 export async function loader({ request }: LoaderFunctionArgs) {
   let auth = await getAuthFromRequest(request);
