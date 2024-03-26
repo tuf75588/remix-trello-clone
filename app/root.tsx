@@ -14,6 +14,7 @@ import React from 'react';
 import { getAuthFromRequest } from './auth/auth';
 import './styles.css';
 import type { LoaderFunction, LoaderFunctionArgs } from '@remix-run/node';
+import { LoginIcon, LogoutIcon } from './components/icons /icons';
 
 export async function loader({ request }: LoaderFunctionArgs) {
   let auth = await getAuthFromRequest(request);
@@ -61,7 +62,7 @@ export default function App() {
               {userId ? (
                 <form action="/logout" method="post">
                   <button className="block text-center">
-                    {/* logout icon */}
+                    <LogoutIcon />
                     <br />
                     <span className="text-slate-500 text-xs uppercase font-bold">
                       Log out
@@ -70,7 +71,7 @@ export default function App() {
                 </form>
               ) : (
                 <Link to="/login" className="block text-center">
-                  {/* login icon */}
+                  <LoginIcon />
                   <br />
                 </Link>
               )}
