@@ -1,6 +1,7 @@
 import { json, redirect, type DataFunctionArgs } from '@remix-run/node';
 import { Form, Link, useActionData } from '@remix-run/react';
 import { Input, Label } from '~/components/input';
+import {Button} from '~/components/button';
 
 export const meta = () => {
   return [{ title: 'Login' }];
@@ -9,7 +10,9 @@ export const meta = () => {
 
 export async function action({request}: DataFunctionArgs) {
   let formData = await request.formData();
-  return json({formData});
+  let email = formData.get('email')
+  let password = formData.get('password');
+  return json({email, password});
 }
 
 
@@ -54,7 +57,9 @@ export default function Signup() {
               />
             </div>
 
-            <div></div>
+            <div>
+              <Button type="submit">Sign in</Button>
+            </div>
             <div className="text-sm text-slate-500">
               Don't have an account?{' '}
               <Link className="underline" to="/signup">
