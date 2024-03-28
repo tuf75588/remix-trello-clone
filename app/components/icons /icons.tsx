@@ -1,4 +1,4 @@
-import iconsHref from './iconsHref?url';
+import iconsHref from "./icons.svg?url";
 
 export function Icon({
   name,
