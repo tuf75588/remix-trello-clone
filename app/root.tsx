@@ -9,12 +9,13 @@ import {
   redirect,
   useLoaderData,
 } from '@remix-run/react';
-import React from 'react';
+
 
 import { getAuthFromRequest } from './auth/auth';
 import './styles.css';
 import type { LoaderFunction, LoaderFunctionArgs } from '@remix-run/node';
-import { LoginIcon, LogoutIcon } from './components/icons /icons';
+
+import { LoginIcon, LogoutIcon } from './icons/icons';
 
 export async function loader({ request }: LoaderFunctionArgs) {
   let auth = await getAuthFromRequest(request);
