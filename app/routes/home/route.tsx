@@ -25,3 +25,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
   let userId = await requireAuthCookie(request);
   return { userId };
 }
+
+export default function Home() {
+  return (
+    <div>home</div>
+  )
+}

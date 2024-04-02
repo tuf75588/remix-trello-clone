@@ -4,21 +4,27 @@ import { Form, Link, useActionData } from '@remix-run/react';
 import { redirectIfLoggedInLoader, setAuthOnResponse } from '~/auth/auth';
 import { Label, Input } from '~/components/input';
 import { Button } from '~/components/button';
+
 import { validate } from './validate';
 import { createAccount } from './queries';
 
 export const loader = redirectIfLoggedInLoader;
 
+export const meta = () => {
+  return [{ title: 'Trellix Signup' }];
+};
+
 export async function action({ request }: ActionFunctionArgs) {
   let formData = await request.formData();
+
   let email = String(formData.get('email') || '');
   let password = String(formData.get('password') || '');
 
-  // check for errors
   let errors = await validate(email, password);
   if (errors) {
     return json({ ok: false, errors }, 400);
   }
+
   let user = await createAccount(email, password);
   return setAuthOnResponse(redirect('/home'), user.id);
 }
@@ -102,7 +108,7 @@ export default function Signup() {
           <h3 className="font-bold text-black">Terms of Service</h3>
           <p>
             This is a demo app, there are no terms of service. Don't be
-            surprised if your data dissappears.
+            surprised if your data disappears.
           </p>
         </div>
       </div>
