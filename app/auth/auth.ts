@@ -50,7 +50,7 @@ export async function requireAuthCookie(request: Request) {
   return userId;
 }
 
-export async function redirectIfLoggedIn({ request }: LoaderFunctionArgs) {
+export async function redirectIfLoggedInLoader({ request }: LoaderFunctionArgs) {
   let userId = await getAuthFromRequest(request);
   if (userId) {
     throw redirect('/home');
