@@ -16,18 +16,23 @@ import {
 import { requireAuthCookie } from '~/auth/auth';
 import { Button } from '~/components/button';
 import { Icon } from '~/icons/icons';
+import { getHomeData, createBoard, deleteBoard } from './queries';
 
-const meta = () => {
+export const meta = () => {
   return [{ title: 'Boards' }];
 };
 
 export async function loader({ request }: LoaderFunctionArgs) {
   let userId = await requireAuthCookie(request);
-  return { userId };
+  let boards = await getHomeData(userId);
+  return { boards };
 }
 
+export async function action({request}: ActionFunctionArgs) {
+  let accountId = await requireAuthCookie(request);
+}
+
+
 export default function Home() {
-  return (
-    <div>home</div>
-  )
+  return <div>home</div>;
 }
