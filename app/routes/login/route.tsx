@@ -18,7 +18,6 @@ export async function action({request}: DataFunctionArgs) {
 
 export default function Signup() {
   let actionResult = useActionData<typeof action>();
-  console.log(actionResult);
   return (
     <div className="flex min-h-full flex-1 flex-col mt-20 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
